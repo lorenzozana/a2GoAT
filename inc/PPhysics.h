@@ -51,10 +51,23 @@ public:
 	void	FillMissingMass(const GTreeParticle& tree, GH1* gHist);
 	void	FillMissingMass(const GTreeParticle& tree, Int_t particle_index, GH1* gHist);
 	void 	FillMissingMass(const GTreeParticle& tree, Int_t particle_index, Int_t tagger_index, GH1* gHist);
+	void	FillMissingMomentum(const GTreeParticle& tree, GH1* gHist);
+	void	FillMissingMomentum(const GTreeParticle& tree, Int_t particle_index, GH1* gHist);
+	void 	FillMissingMomentum(const GTreeParticle& tree, Int_t particle_index, Int_t tagger_index, GH1* gHist);
+	void	FillDeltaE(const GTreeMeson& tree, GH1* gHist);
+	void	FillDeltaE(const GTreeMeson& tree, Int_t particle_index, GH1* gHist);
+	void 	FillDeltaE(const GTreeMeson& tree, Int_t particle_index, Int_t tagger_index, GH1* gHist);
+	void	FillMissingMomentumDan(const GTreeParticle& tree, GH1* gHist);
+	void	FillMissingMomentumDan(const GTreeParticle& tree, Int_t particle_index, GH1* gHist);
+	void 	FillMissingMomentumDan(const GTreeParticle& tree, Int_t particle_index, Int_t tagger_index, GH1* gHist);
 
-    Double_t CalcMissingMass(const GTreeParticle &tree, Int_t particle_index, Int_t tagger_index);
-    Double_t CalcMissingEnergy(const GTreeParticle &tree, Int_t particle_index, Int_t tagger_index);
-    TLorentzVector CalcMissingP4(const GTreeParticle &tree, Int_t particle_index, Int_t tagger_index);
+	Double_t CalcMissingMass(const GTreeParticle &tree, Int_t particle_index, Int_t tagger_index);
+	Double_t CalcMissingEnergy(const GTreeParticle &tree, Int_t particle_index, Int_t tagger_index);
+	Double_t CalcMissingMomentum(const GTreeParticle &tree, Int_t particle_index, Int_t tagger_index);
+	Double_t CalcMissingMomentumDan(const GTreeParticle &tree, Int_t particle_index, Int_t tagger_index);
+	Double_t CalcDeltaEDan(const GTreeMeson& tree, Int_t particle_index, Int_t tagger_index);
+	Double_t CalcBeamE(Int_t tagger_index);
+	TLorentzVector CalcMissingP4(const GTreeParticle &tree, Int_t particle_index, Int_t tagger_index);
 
 	void 	FillTime(const GTreeParticle& tree, GH1* gHist);
 	void 	FillTime(const GTreeParticle& tree, Int_t particle_index, GH1* gHist);

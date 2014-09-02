@@ -20,8 +20,16 @@ private:
     GH1*	IM;
     GH1*	IM_2g;
     
-    GH1*	MM;
-    GH1*	MM_2g; 
+    GH1*	MMass;
+    GH1*	MMass_2g; 
+
+    GH1*	MMom;
+    GH1*	MMom_2g; 
+
+    GH1*	MMomDan;
+    GH1*	MMomDan_2g; 
+
+    GH1*	DeltaE_CM_Dan_2g; 
     
 protected:
     virtual Bool_t  Start();
