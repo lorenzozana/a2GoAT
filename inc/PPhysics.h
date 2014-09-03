@@ -58,9 +58,9 @@ public:
 	void	FillDeltaE(const GTreeMeson& tree, GH1* gHist);
 	void	FillDeltaE(const GTreeMeson& tree, Int_t particle_index, GH1* gHist);
 	void 	FillDeltaE(const GTreeMeson& tree, Int_t particle_index, Int_t tagger_index, GH1* gHist);
-	void	FillDeltaE_Missmom(const GTreeMeson& tree, TH2F* gHist,TH2F* gHist2);
-	void	FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index,TH2F* gHist,TH2F* gHist2);
-	void 	FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, Int_t tagger_index, TH2F* gHist,TH2F* gHist2);
+	void	FillDeltaE_Missmom(const GTreeMeson& tree, GH1** gHist);
+	void	FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, GH1** gHist);
+	void 	FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, Int_t tagger_index, GH1** gHist);
 	void	FillMissingMomentumDan(const GTreeParticle& tree, GH1* gHist);
 	void	FillMissingMomentumDan(const GTreeParticle& tree, Int_t particle_index, GH1* gHist);
 	void 	FillMissingMomentumDan(const GTreeParticle& tree, Int_t particle_index, Int_t tagger_index, GH1* gHist);

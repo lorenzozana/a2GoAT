@@ -83,40 +83,48 @@ void PPhysics::FillDeltaE(const GTreeMeson& tree, Int_t particle_index, Int_t ta
 
 }
 
-void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, TH2F* gHist,TH2F* gHist2)
+void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, GH1** gHist)
 {
 	for (Int_t i = 0; i < tree.GetNParticles(); i++)
 	{
 		for (Int_t j = 0; j < tagger->GetNTagged(); j++)
 		{
-		  FillDeltaE_Missmom(tree, i, j, gHist, gHist2);
+		  FillDeltaE_Missmom(tree, i, j, gHist);
 		}
 	}
 }
 
-void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, TH2F* gHist,TH2F* gHist2)
+void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, GH1** gHist)
 {
     for (Int_t i = 0; i < tagger->GetNTagged(); i++)
 	{
-	  FillDeltaE_Missmom(tree, particle_index, i, gHist, gHist2);
+	  FillDeltaE_Missmom(tree, particle_index, i, gHist);
 	}
 }
 
-void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, Int_t tagger_index, TH2F* gHist,TH2F* gHist2)
+void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, Int_t tagger_index, GH1** gHist)
 {
+  double qmin=0.0; //min and max in fm^-1
+  double qmax=1.5;
+  int nqbin = 150;
+  int qbin;
+  int nEbin=23;
+  int Ebin=-1;
+  double Ebin_v[] = {135,140,145,150,160,170,180,190,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480,580};
+    
     // calc particle time diff
     time = tagger->GetTagged_t(tagger_index) - tree.GetTime(particle_index);
-    
-    
-    if(GHistBGSub::IsPrompt(time)) {
-    // Fill GH1
-      gHist->Fill(CalcDeltaEDan(tree,particle_index,tagger_index),CalcMissingMomentumDan(tree,particle_index,tagger_index));					
+    Double_t q=CalcMissingMomentumDan(tree,particle_index,tagger_index);
+    Double_t E_beam=CalcBeamE(tagger_index);
+    Double_t DeltaE=CalcDeltaEDan(tree,particle_index,tagger_index);
+
+    for (int i=0; i<nEbin; i++) {
+      if (E_beam >= Ebin_v[i] && E_beam<Ebin_v[i+1]) Ebin=i; 
     }
-    if(GHistBGSub::IsRandom(time)) {
-    // Fill GH1
-      gHist2->Fill(CalcDeltaEDan(tree,particle_index,tagger_index),CalcMissingMomentumDan(tree,particle_index,tagger_index));					
+    qbin = int(TMath::Floor(q));
+    if ( Ebin != -1 && qbin >0 && qbin< nqbin ) {
+      gHist[qbin*nEbin+Ebin]->Fill(DeltaE,time);
     }
-    
 }
 
 
