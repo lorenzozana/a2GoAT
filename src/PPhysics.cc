@@ -83,6 +83,43 @@ void PPhysics::FillDeltaE(const GTreeMeson& tree, Int_t particle_index, Int_t ta
 
 }
 
+void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, TH2F* gHist,TH2F* gHist2)
+{
+	for (Int_t i = 0; i < tree.GetNParticles(); i++)
+	{
+		for (Int_t j = 0; j < tagger->GetNTagged(); j++)
+		{
+		  FillDeltaE_Missmom(tree, i, j, gHist, gHist2);
+		}
+	}
+}
+
+void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, TH2F* gHist,TH2F* gHist2)
+{
+    for (Int_t i = 0; i < tagger->GetNTagged(); i++)
+	{
+	  FillDeltaE_Missmom(tree, particle_index, i, gHist, gHist2);
+	}
+}
+
+void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, Int_t tagger_index, TH2F* gHist,TH2F* gHist2)
+{
+    // calc particle time diff
+    time = tagger->GetTagged_t(tagger_index) - tree.GetTime(particle_index);
+    
+    
+    if(GHistBGSub::IsPrompt(time)) {
+    // Fill GH1
+      gHist->Fill(CalcDeltaEDan(tree,particle_index,tagger_index),CalcMissingMomentumDan(tree,particle_index,tagger_index));					
+    }
+    if(GHistBGSub::IsRandom(time)) {
+    // Fill GH1
+      gHist2->Fill(CalcDeltaEDan(tree,particle_index,tagger_index),CalcMissingMomentumDan(tree,particle_index,tagger_index));					
+    }
+    
+}
+
+
 Double_t PPhysics::CalcMissingMomentum(const GTreeParticle& tree, Int_t particle_index, Int_t tagger_index)
 {
     missingp4 	= CalcMissingP4(tree, particle_index, tagger_index);

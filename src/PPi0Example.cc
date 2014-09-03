@@ -26,6 +26,9 @@ PPi0Example::PPi0Example()
     MMomDan_2g	= new GH1("MMomDan_2g", 	"MMom_2g;q(fm^{-1})", 	400,   0, 2.0); 
 
     DeltaE_CM_Dan_2g	= new GH1("DeltaE_CM_Dan_2g", 	"DeltaE_{CM} 2 #gamma ; MeV", 	400, -60., 60.); 
+
+    DeltaE_Missmom_prompt =  new TH2F("DeltaE_Missmom_prompt","DeltaE_{CM} 2 #gamma vs Missing Mom; DeltaE_{CM}(MeV); q(fm^{-1})",100,-60,60,200,0.,2.);
+   DeltaE_Missmom_random =  new TH2F("DeltaE_Missmom_random","DeltaE_{CM} 2 #gamma vs Missing Mom; DeltaE_{CM}(MeV); q(fm^{-1})",100,-60,60,200,0.,2.);
 }
 
 PPi0Example::~PPi0Example()
@@ -83,6 +86,8 @@ void	PPi0Example::ProcessEvent()
 
 		// fill missing momentum calculated using Dan routine, this pi0
             	FillMissingMomentumDan(*pi0,i,MMomDan_2g);
+
+		FillDeltaE_Missmom(*pi0,DeltaE_Missmom_prompt,DeltaE_Missmom_random);
             
 		// fill invariant mass, this pi0
         	FillMass(*pi0,i,IM_2g);

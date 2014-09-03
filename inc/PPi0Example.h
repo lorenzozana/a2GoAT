@@ -8,6 +8,7 @@
 
 #include "GTreeManager.h"
 #include "PPhysics.h"
+#include "TH2F.h"
 
 class	PPi0Example  : public PPhysics
 {
@@ -30,7 +31,8 @@ private:
     GH1*	MMomDan_2g; 
 
     GH1*	DeltaE_CM_Dan_2g; 
-    
+    TH2F*       DeltaE_Missmom_prompt;
+    TH2F*       DeltaE_Missmom_random;
 protected:
     virtual Bool_t  Start();
 
