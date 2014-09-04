@@ -121,7 +121,7 @@ void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, 
     for (int i=0; i<nEbin; i++) {
       if (E_beam >= Ebin_v[i] && E_beam<Ebin_v[i+1]) Ebin=i; 
     }
-    qbin = int(TMath::Floor(q));
+    qbin = int(TMath::Floor(q*100));
     if ( Ebin != -1 && qbin >0 && qbin< nqbin ) {
       gHist[qbin*nEbin+Ebin]->Fill(DeltaE,time);
     }
