@@ -27,13 +27,13 @@ PPi0Example::PPi0Example()
 
     DeltaE_CM_Dan_2g	= new GH1("DeltaE_CM_Dan_2g", 	"DeltaE_{CM} 2 #gamma ; MeV", 	400, -60., 60.); 
 
-    int bin_q=150;
+    int bin_q=300;
     int bin_e=23;
     char Title[60];
     char Title2[160];
     for (int i=0; i<bin_q; i++) {
       for (int j=0; j<bin_e; j++) {
-	sprintf(Title,"DeltaE_Missmom%d_BeamE%d",i,j);
+	sprintf(Title,"pimissen_q_%d_%.3f_%.3f",j,i*0.005,(i*0.005+0.005));
 	sprintf(Title2,"DeltaE_{CM} 2 #gamma for q_{bin}=%i and E_{bin}=%i; DeltaE_{CM}(MeV)",i,j);
 	DeltaE_Missmom_BeamE[i*bin_e+j] =  new GH1(Title,Title2,100,-60,60);
       }
