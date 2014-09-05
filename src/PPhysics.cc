@@ -106,7 +106,7 @@ void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, 
 {
   double qmin=0.0; //min and max in fm^-1
   double qmax=1.5;
-  int nqbin = 150;
+  int nqbin = 300;
   int qbin;
   int nEbin=23;
   int Ebin=-1;
@@ -121,7 +121,7 @@ void PPhysics::FillDeltaE_Missmom(const GTreeMeson& tree, Int_t particle_index, 
     for (int i=0; i<nEbin; i++) {
       if (E_beam >= Ebin_v[i] && E_beam<Ebin_v[i+1]) Ebin=i; 
     }
-    qbin = int(TMath::Floor(q*100));
+    qbin = int(TMath::Floor(q*200));
     if ( Ebin != -1 && qbin >0 && qbin< nqbin ) {
       gHist[qbin*nEbin+Ebin]->Fill(DeltaE,time);
     }
