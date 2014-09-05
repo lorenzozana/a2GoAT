@@ -31,7 +31,7 @@ private:
     GH1*	MMomDan_2g; 
 
     GH1*	DeltaE_CM_Dan_2g; 
-    GH1*       DeltaE_Missmom_BeamE[3500];
+    GH1*       DeltaE_Missmom_BeamE[7000];
 protected:
     virtual Bool_t  Start();
 
