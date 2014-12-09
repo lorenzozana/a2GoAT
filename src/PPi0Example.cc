@@ -5,7 +5,7 @@ PPi0Example::PPi0Example()
     GHistBGSub::InitCuts(-20, 15, -100, -40);
     GHistBGSub::AddRandCut(35, 95);
     
-    SetTarget(115417.416); // Mass of the Target Tin mass AT REST: Sn-120: M=111688.180MeV, Sn124: M=115417.416MeV, Pb208: M=193728.955MeV, Ni58: M=53966.385
+    SetTarget(115417.416); // Mass of the Target Tin mass AT REST: Sn-116: M=107961.738MeV Sn-120: M=111688.180MeV, Sn124: M=115417.416MeV, Pb208: M=193728.955MeV, Ni58: M=53966.385
         
     time 	= new GH1("time", 	"time", 	1400, -700, 700);
     time_cut 	= new GH1("time_cut", 	"time_cut", 	1400, -700, 700);
@@ -33,7 +33,9 @@ PPi0Example::PPi0Example()
     char Title2[160];
     for (int i=0; i<bin_q; i++) {
       for (int j=0; j<bin_e; j++) {
-	sprintf(Title,"pimissen_q_%d_%.3f_%.3f",j,i*0.005,(i*0.005+0.005));
+       	sprintf(Title,"pimissen_q_%d_%.3f_%.3f",j,i*0.005,(i*0.005+0.005)); //original q binning
+	//	sprintf(Title,"pimissen_q_%d_%.3f_%.3f",j,i*0.02,(i*0.02+0.02)); //rebin 4
+	//sprintf(Title,"pimissen_q_%d_%.3f_%.3f",j,i*0.05,(i*0.05+0.05)); //rebin 10
 	sprintf(Title2,"DeltaE_{CM} 2 #gamma for q_{bin}=%i and E_{bin}=%i; DeltaE_{CM}(MeV)",i,j);
 	DeltaE_Missmom_BeamE[i*bin_e+j] =  new GH1(Title,Title2,100,-60,60);
       }
